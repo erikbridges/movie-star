@@ -1,0 +1,19 @@
+.movie__container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 20px;
+}
+.movie__img-wrap {
+  max-width: 500px;
+  margin: 20px;
+  margin: 0 auto;
+}
+.movie__img-p {
+  width: 300px;
+  height: 400px;
+  background: #ddd;
+  display: block;
+  margin: 0 auto;
+}

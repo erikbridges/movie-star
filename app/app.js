@@ -25,7 +25,7 @@ import '!file-loader?name=[name].[ext]!./images/favicon.ico';
 /* eslint-enable import/no-webpack-loader-syntax */
 
 // Import CSS reset and Global Styles
-import 'styles/theme.scss';
+import './styles/index.scss';
 
 import configureStore from './configureStore';
 
@@ -46,7 +46,7 @@ const render = () => {
         <App />
       </ConnectedRouter>
     </Provider>,
-    MOUNT_NODE
+    MOUNT_NODE,
   );
 };
 

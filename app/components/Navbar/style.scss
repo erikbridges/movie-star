@@ -1,0 +1,71 @@
+// Navbar and Search Icon
+.navbar {
+  display: flex;
+  background: #30008a;
+  align-items: center;
+  flex-wrap: wrap;
+  overflow: hidden;
+  z-index: 99;
+  position: relative;
+}
+.navbar__logo {
+  flex: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.navbar__search {
+  flex: 80%;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.navbar__search input {
+  flex: 1 100%;
+  border: none;
+  background: rgba(#f4f4f4, 0.2);
+  padding: 15px;
+  padding-left: 100px;
+  font-size: 1.2rem;
+  color: #f4f4f4;
+  position: relative;
+}
+.search-icon {
+  position: absolute;
+  left: 25px;
+  padding: 10px;
+}
+// Side Navbar
+.side-nav {
+  position: fixed;
+  top: 0;
+  min-height: 100vh;
+  height: auto;
+  float: left;
+  background: #111;
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  min-width: 20%;
+}
+.side-nav__wrap {
+  margin-top: 150px;
+  width: 100%;
+}
+.side-nav__wrap a {
+  display: block;
+  padding: 15px;
+  width: 100%;
+  cursor: pointer;
+  &:hover {
+    background: rgba(#f4f4f4, 0.5);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .side-nav {
+    display: none;
+  }
+}

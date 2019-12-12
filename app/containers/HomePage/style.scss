@@ -1,32 +1,11 @@
-.home-page {
-  
-  h2 {
-    font-size: 1.5em;
-  }
-  
-  section {
-    margin: 3em auto;
+.homepage {
+  float: right;
+  padding: 40px;
+  width: 80%;
+}
 
-    &:first-child {
-      margin-top: 0;
-    }
-
-    &.centered {
-      text-align: center;
-    }
-  }
-
-  form {
-    margin-bottom: 1em;
-
-    input {
-      outline: none;
-      border-bottom: 1px dotted #999;
-    }
-  }
-
-  span.at-prefix {
-    color: black;
-    margin-left: 0.4em;
+@media screen and (max-width: 768px) {
+  .homepage {
+    width: 100%;
   }
 }
