@@ -35,6 +35,16 @@ Here are a few highlights to look out for in this application
   <dd>Get the latest and most accurate information about your favorite show.</dd>
 </dl>
 
+## Important Copyrighted Notice
+
+This app contains images that are copyright protected. I do not have the rights to the copyrighted
+material that is displayed nor do I have control to what is displayed from the API. This app was
+only intended to research a movie that a user will want to know about. Due to this app displaying
+copyrighted material, this app will not be deployed online nor should I recommend anyone to clone this
+app and deploy it online. This app also do not and will not in the future view and play movies for free.
+I do not condone piracy of any sort! If there are any copyrighted issues please contact me on my website
+at `http://erikbridges.com`.
+
 ## Quick start
 
 1. Clone this repo using `git clone git@github.com:erikbridges/movie-star.git`
