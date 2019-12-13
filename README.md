@@ -9,7 +9,7 @@
 <br />
 
 <div align="center">
-  <sub>Created by <a href="https://twitter.com/flexdinesh">Dinesh Pandiyan under React Boilerplate</a></sub>
+  <sub>Created by <a href="https://twitter.com/flexdinesh">Dinesh Pandiyan for the React Boilerplate</a></sub>
    <sub>Created by <a href="https://erikbridges.com">Erik Bridges for front-end Development</a></sub>
 </div>
 
