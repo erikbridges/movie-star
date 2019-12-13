@@ -1,14 +1,17 @@
-import React, { useEffect, useReducer } from 'react';
+import React, { useEffect, useReducer, Fragment } from 'react';
 import axios from 'axios';
+import Loading from '../LoadingIndicator';
 import './style.scss';
 
 function MovieContainer() {
   function fetchMovieAPIReducer(state, action) {
     switch (action.type) {
       case 'FETCH_INIT': {
+        console.log('Loading');
         return { ...state, isLoading: true };
       }
       case 'FETCH_SUCCESS': {
+        console.log(action.payload.data);
         return { ...state, data: action.payload.data, isLoading: false };
       }
       case 'FETCH_FAILURE': {
@@ -21,13 +24,15 @@ function MovieContainer() {
   const [state, dispatch] = useReducer(fetchMovieAPIReducer, {
     isLoading: false,
     isError: false,
-    data: null,
+    data: [],
+    once: false,
   });
 
   useEffect(() => {
     let didCancel = false;
 
-    async function fetchMovieAPI() {
+    const fetchData = async () => {
+      console.log('Data');
       dispatch({ type: 'FETCH_INIT' });
       try {
         const response = await axios.get(
@@ -35,140 +40,55 @@ function MovieContainer() {
         );
         if (!didCancel) {
           console.log(response.data);
+          if (state.once === true) {
+            return;
+          }
           // Ignore if we started fetching something else
-          dispatch({ type: 'FETCH_SUCCESS', payload: response.data });
+          dispatch({
+            type: 'FETCH_SUCCESS',
+            payload: {
+              data: response.data.results,
+              once: true,
+            },
+          });
         }
       } catch (ex) {
         if (!didCancel) {
-          dispatch({ type: 'FATCH_FAILURE' });
+          dispatch({ type: 'FETCH_FAILURE' });
         }
       }
-    }
-
-    fetchMovieAPI();
+    };
+    fetchData();
     return () => {
       didCancel = true;
     };
-  });
+  }, []);
   return (
     <div className="movie__container">
-      <div className="movie__box">
-        <div className="movie__img-wrap">
-          {/* Movie Image Goes Here */}
-          {/* Image Box (Placeholder) */}
-          <div className="movie__img-p"></div>
-        </div>
-        <div>
-          {/* Movie Description Goes Here  */}
-          <h3>Movie Title</h3>
-          <span>Rating: ***</span>
-          <p>Comedy</p>
-        </div>
-      </div>
-      <div className="movie__box">
-        <div>
-          {/* Movie Image Goes Here */}
-          {/* Image Box (Placeholder) */}
-          <div className="movie__img-p"></div>
-        </div>
-        <div>
-          {/* Movie Description Goes Here  */}
-          <h3>Movie Title</h3>
-          <span>Rating: *****</span>
-          <p>Action</p>
-        </div>
-      </div>
-      <div className="movie__box">
-        <div>
-          {/* Movie Image Goes Here */}
-          {/* Image Box (Placeholder) */}
-          <div className="movie__img-p"></div>
-        </div>
-        <div>
-          {/* Movie Description Goes Here  */}
-          <h3>Movie Title</h3>
-          <span>Rating: *****</span>
-          <p>Action</p>
-        </div>
-      </div>
-      <div className="movie__box">
-        <div>
-          {/* Movie Image Goes Here */}
-          {/* Image Box (Placeholder) */}
-          <div className="movie__img-p"></div>
-        </div>
-        <div>
-          {/* Movie Description Goes Here  */}
-          <h3>Movie Title</h3>
-          <span>Rating: *****</span>
-          <p>Action</p>
-        </div>
-      </div>
-      <div className="movie__box">
-        <div>
-          {/* Movie Image Goes Here */}
-          {/* Image Box (Placeholder) */}
-          <div className="movie__img-p"></div>
-        </div>
-        <div>
-          {/* Movie Description Goes Here  */}
-          <h3>Movie Title</h3>
-          <span>Rating: *****</span>
-          <p>Action</p>
-        </div>
-      </div>
-      <div className="movie__box">
-        <div>
-          {/* Movie Image Goes Here */}
-          {/* Image Box (Placeholder) */}
-          <div className="movie__img-p"></div>
-        </div>
-        <div>
-          {/* Movie Description Goes Here  */}
-          <h3>Movie Title</h3>
-          <span>Rating: *****</span>
-          <p>Action</p>
-        </div>
-      </div>
-      <div className="movie__box">
-        <div>
-          {/* Movie Image Goes Here */}
-          {/* Image Box (Placeholder) */}
-          <div className="movie__img-p"></div>
-        </div>
-        <div>
-          {/* Movie Description Goes Here  */}
-          <h3>Movie Title</h3>
-          <span>Rating: *****</span>
-          <p>Action</p>
-        </div>
-      </div>
-      <div className="movie__box">
-        <div>
-          {/* Movie Image Goes Here */}
-          {/* Image Box (Placeholder) */}
-          <div className="movie__img-p"></div>
-        </div>
-        <div>
-          {/* Movie Description Goes Here  */}
-          <h3>Movie Title</h3>
-          <span>Rating: *****</span>
-          <p>Action</p>
-        </div>
-      </div>
-      <div className="movie__box">
-        <div>
-          {/* Movie Image Goes Here */}
-          {/* Image Box (Placeholder) */}
-          <div className="movie__img-p"></div>
-        </div>
-        <div>
-          {/* Movie Description Goes Here  */}
-          <h3>Movie Title</h3>
-          <span>Rating: *****</span>
-          <p>Action</p>
-        </div>
-      </div>
+      {state.isLoading ? (
+        <Loading />
+      ) : (
+        state.data.map(item => {
+          console.log(item);
+          return (
+            <div className="movie__box" key={item.id}>
+              <div className="movie__img-wrap">
+                {/* Movie Image Goes Here */}
+                <img
+                  src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
+                  alt=""
+                />
+              </div>
+              <div>
+                {/* Movie Description Goes Here  */}
+                <h3>{item.title}</h3>
+                <span>Release Date: {item.release_date}</span>
+                <p>Rating {item.vote_average}</p>
+              </div>
+            </div>
+          );
+        })
+      )}
     </div>
   );
 }
