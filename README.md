@@ -10,7 +10,7 @@
 
 <div align="center">
   <sub>Created by <a href="https://twitter.com/flexdinesh">Dinesh Pandiyan under React Boilerplate</a></sub>
-   <sub>Created by <a href="https://erikbridges.com">Erik Bridges under for Development</a></sub>
+   <sub>Created by <a href="https://erikbridges.com">Erik Bridges for front-end Development</a></sub>
 </div>
 
 ## Technology Specs
