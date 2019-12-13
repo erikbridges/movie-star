@@ -50,9 +50,11 @@ at `http://erikbridges.com`.
 1. Clone this repo using `git clone git@github.com:erikbridges/movie-star.git`
 2. Move to the appropriate directory: `cd movie-star`.<br />
 3. Run `yarn` or `npm install` to install dependencies.<br />
-4. Run `npm start` to see the example app at `http://localhost:3000`.
+4. Run `npm start` to see the app at `http://localhost:3000`.
 
-Now you're ready build your beautiful React Application!
+Now you're ready to search! Please don't deploy this app online.
+I am not responsible for any copyright infringement you recieve if
+the warning is ignored.
 
 ## License
 
